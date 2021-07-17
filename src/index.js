@@ -5,6 +5,17 @@ const onClickAdd = () => {
     // 初期化
     document.getElementById("add-text").value = "";
 
+    // TODOリストに追加
+    createTodoList(inputText);
+};
+
+// TODOリストから削除する関数
+const deleteFromTodos = (target) => {
+    document.getElementById("todo-list").removeChild(target);
+};
+
+// TODOリストに追加する関数
+const createTodoList = (text) => {
     // liを生成
     const li = document.createElement("li");
     li.className = "todo-item";
@@ -15,15 +26,15 @@ const onClickAdd = () => {
 
     // pを生成
     const p = document.createElement("p");
-    p.innerText = inputText;
+    p.innerText = text;
 
     // 完了ボタンを生成
     const doneButton = document.createElement("button");
     doneButton.innerText = "完了";
     doneButton.addEventListener("click", () => {
         // 押された完了ボタンのliタグを削除する
-        const Target = doneButton.closest(".todo-item")
-        document.getElementById("todo-list").removeChild(Target);
+        const Target = doneButton.closest(".todo-item");
+        deleteFromTodos(Target);
 
         // 完了リストに追加する要素を指定
         // liを生成
@@ -34,16 +45,18 @@ const onClickAdd = () => {
         div.className = "list-row";
         // pを生成
         const p = document.createElement("p");
-        p.innerText = inputText;
+        p.innerText = text;
         // 戻すボタンを生成
         const returnButton = document.createElement("button");
         returnButton.innerText = "戻す";
-        returnButton.addEventListener("click", () => {
+        returnButton.addEventListener("click", (text) => {
             // 押された戻すボタンのliタグを削除する
             const Target = returnButton.closest(".done-item")
             document.getElementById("done-list").removeChild(Target);
 
-
+            // テキストを取得する
+            const Text = returnButton.parentNode.firstElementChild.innerText;
+            createTodoList(Text);
         });
 
         //　親子関係を設定
@@ -71,7 +84,7 @@ const onClickAdd = () => {
     div.appendChild(doneButton);
     div.appendChild(deleteButton);
 
-    // 未完了リストに追加
+    // TODOリストに追加
     document.getElementById("todo-list").appendChild(li);
 };
 
