@@ -4,6 +4,21 @@ body {
     align-items: center;
 }
 
+p {
+    margin: 0px;
+}
+
+button {
+    border: none;
+    padding: 4px 14px;
+    margin-left: 4px;
+    border-radius: 10px;
+}
+
+button:hover {
+    background-color: papayawhip;
+}
+
 .input-area {
     background-color: #c1ffff;
     width: 400px;
@@ -11,6 +26,22 @@ body {
     padding: 8px;
     margin: 8px;
     border-radius: 8px;
+}
+
+input {
+    border-radius: 8px;
+    border: none;
+    padding: 6px 16px;
+    outline: none;
+}
+
+.title {
+    text-align: center;
+}
+
+.list-row {
+    display: flex;
+    padding-bottom: 5px;
 }
 
 .todo-area {
